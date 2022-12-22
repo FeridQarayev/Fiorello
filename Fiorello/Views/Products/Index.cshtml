@@ -1,0 +1,42 @@
+﻿@model List<Product>
+<main>
+    <section id="shop-list-title">
+        <div class="container py-4">
+            <div class="row py-5">
+                <div class="col-12">
+                    <h1>Shop List</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS START -->
+
+    <section id="products">
+        <div class="container">
+            <div class="row py-5">
+                @foreach (Product product in Model)
+                {
+                    <div class="col-sm-6 col-md-4 col-lg-4 mt-3">
+                        <div class="product-item product-item-small text-center" data-id="popular">
+                            <div class="img">
+                                <a asp-action="Detail" asp-route-id="@product.Id">
+                                    <img src="~/img/@product.Image" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                            <div class="title mt-3">
+                                <h6>@product.Name</h6>
+                            </div>
+                            <div class="price">
+                                <span class="text-black-50">$@product.Price</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS END -->
+
+</main>

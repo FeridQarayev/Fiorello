@@ -1,0 +1,64 @@
+﻿@model List<UserVM>
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title">Users</h4>
+                    <a asp-action="Create" class="btn btn-primary text-white btn-rounded">Create</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (UserVM product in Model)
+                            {
+                                <tr>
+                                    <td>@product.Name</td>
+                                    <td>@product.Surname</td>
+                                    <td>@product.Username</td>
+                                    <td>@product.Email</td>
+                                    <td>@product.Role</td>
+                                    <td>
+                                        @if (product.IsDeactive)
+                                        {
+                                            <span class="text-danger">Deactive</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-success">Active</span>
+                                        }
+                                    </td>
+                                    <td class="d-flex justify-content-end">
+                                        <a asp-action="ResetPassword" asp-route-id="@product.Id" class="btn btn-warning text-white btn-rounded mx-2">Reset Password</a>
+                                        <a asp-action="Update" asp-route-id="@product.Id" class="btn btn-success text-white btn-rounded mx-2">Update</a>
+                                        @if (product.IsDeactive)
+                                        {
+                                            <a asp-action="Activity" asp-route-id="@product.Id" class="btn btn-success text-white btn-rounded">Activade</a>
+
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Activity" asp-route-id="@product.Id" class="btn btn-danger text-white btn-rounded">Deactivade</a>
+
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
